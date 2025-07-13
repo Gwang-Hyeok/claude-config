@@ -33,3 +33,6 @@ Thumbs.db
 # Backup files
 *.bak
 *.backup
+
+statsig*/
+ide*/
