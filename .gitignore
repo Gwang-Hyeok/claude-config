@@ -1,0 +1,35 @@
+# Claude Configuration .gitignore
+
+# Sensitive authentication files
+.credentials.json
+*credentials*
+*token*
+
+# Session-specific data that shouldn't be shared
+projects/
+todos/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Personal environment files
+.env
+.env.local
+.env.production
+.env.staging
+
+# Backup files
+*.bak
+*.backup
