@@ -1,90 +1,348 @@
-# Claude Configuration Files
+# Claude CLI Configuration
 
-이 저장소는 Claude CLI 설정 파일들을 저장하고 새로운 환경에서 쉽게 설정할 수 있도록 도와줍니다.
+A comprehensive configuration repository for Claude Code CLI with custom commands, enhanced documentation, and streamlined development workflows.
 
-## 📁 저장소 구조
+## 🎯 Overview
+
+This repository contains a complete Claude CLI configuration setup with:
+
+- **9 Custom Commands**: Specialized slash commands for development workflows
+- **Enhanced Documentation**: Comprehensive guides and command references  
+- **Git Workflow Integration**: Conventional commits with emoji and clean formatting
+- **Development Tools**: Automated fixing, testing, auditing, and refactoring capabilities
+
+## 📁 Repository Structure
 
 ```
-claude-config/
-├── CLAUDE.md           # Claude Code를 위한 가이드 문서
-├── README.md          # 이 파일
-├── .gitignore         # Git에서 제외할 파일들 (민감한 정보 보호)
-├── ide/               # IDE 통합 설정들
-├── statsig/           # 분석 및 기능 플래그 설정
-└── templates/         # 새 환경 설정을 위한 템플릿들
+~/.claude/
+├── CLAUDE.md                 # Claude Code guidance and architecture documentation
+├── README.md                 # This comprehensive setup guide
+├── .gitignore               # Git exclusions for sensitive data
+├── commands/                # Custom slash command definitions
+│   ├── audit.md            # Security and performance auditing
+│   ├── docs.md             # Documentation generation
+│   ├── explain.md          # Code explanation and analysis
+│   ├── fix.md              # Automated bug detection and fixing
+│   ├── gsave.md            # Git commit with conventional format
+│   ├── refactor.md         # Smart code refactoring suggestions
+│   ├── review_gh.md        # Comprehensive code review
+│   ├── test.md             # Test execution and reporting
+│   └── test_gen.md         # Intelligent test generation
+├── ide/                    # IDE integration configurations
+├── statsig/               # Analytics and feature flags
+├── projects/              # Project session logs (gitignored)
+├── todos/                 # Todo persistence files (gitignored)
+└── .credentials.json      # Authentication tokens (gitignored)
 ```
 
-## 🚀 새 환경에서 설정하기
+## 🚀 Quick Setup
 
-### 1. 저장소 클론
+### 1. Prerequisites
+
+Ensure you have Claude CLI installed:
 
 ```bash
+# Install Claude CLI (if not already installed)
+npm install -g @anthropic/claude-cli
+
+# Verify installation
+claude --version
+```
+
+### 2. Repository Setup
+
+Clone and deploy this configuration:
+
+```bash
+# Clone the repository
 git clone https://github.com/Gwang-Hyeok/claude-config.git
 cd claude-config
-```
 
-### 2. Claude 설정 디렉토리로 복사
+# Backup existing configuration (if any)
+mv ~/.claude ~/.claude.backup.$(date +%Y%m%d)
 
-```bash
-# 기존 설정이 있다면 백업
-mv ~/.claude ~/.claude.backup
-
-# 설정 파일들 복사
+# Deploy configuration
 cp -r . ~/.claude/
-
-# Claude 디렉토리로 이동
 cd ~/.claude
 ```
 
-### 3. 인증 설정
+### 3. Authentication
 
-Claude CLI에 로그인하여 새로운 인증 정보를 생성합니다:
+Authenticate with Claude CLI:
 
 ```bash
 claude auth login
 ```
 
-## 📝 설정 파일 설명
+### 4. Verification
 
-- **CLAUDE.md**: Claude Code가 이 환경에서 작업할 때 참조하는 가이드
-- **.gitignore**: 민감한 정보(인증 토큰, 세션 데이터)가 Git에 커밋되지 않도록 보호
-- **ide/**: VS Code, IntelliJ 등 IDE 통합 설정
-- **statsig/**: Claude 사용 통계 및 기능 플래그 설정
+Test the setup:
 
-## ⚠️ 보안 주의사항
+```bash
+# Verify Claude CLI recognizes the configuration
+claude --help
 
-이 저장소는 다음 파일들을 **포함하지 않습니다**:
+# Test a custom command
+claude /test --help
+```
 
-- `.credentials.json` - 인증 토큰 (새 환경에서 재생성 필요)
-- `projects/` - 프로젝트별 세션 데이터
-- `todos/` - 개인 작업 목록
+## 🛠️ Custom Commands
 
-## 🔄 설정 업데이트하기
+### Development & Quality Assurance
 
-현재 환경의 설정을 저장소에 반영하려면:
+| Command | Purpose | Usage |
+|---------|---------|-------|
+| `/fix` | Automated bug detection and fixing with mypy/ruff | `/fix`, `/fix --mypy-only` |
+| `/test` | Run all unit tests and report results | `/test` |
+| `/audit` | Security and performance analysis | `/audit`, `/audit --security-only` |
+| `/review_gh` | Comprehensive code review | `/review` |
+
+### Documentation & Explanation
+
+| Command | Purpose | Usage |
+|---------|---------|-------|
+| `/docs` | Auto-generate comprehensive documentation | `/docs`, `/docs --readme-only` |
+| `/explain` | Deep code explanation and analysis | `/explain`, `/explain --function name` |
+
+### Code Enhancement
+
+| Command | Purpose | Usage |
+|---------|---------|-------|
+| `/refactor` | Smart code refactoring suggestions | `/refactor`, `/refactor --files src/` |
+| `/test_gen` | Intelligent test generation | `/test-gen`, `/test-gen --unit-only` |
+
+### Git Workflow
+
+| Command | Purpose | Usage |
+|---------|---------|-------|
+| `/gsave` | Conventional commits with emoji formatting | `/gsave`, `/gsave --no-verify` |
+
+## 💡 Usage Examples
+
+### Quality Assurance Workflow
+
+```bash
+# 1. Fix code issues
+claude /fix
+
+# 2. Run comprehensive tests
+claude /test
+
+# 3. Security and performance audit
+claude /audit
+
+# 4. Code review
+claude /review
+
+# 5. Clean commit
+claude /gsave
+```
+
+### Documentation Workflow
+
+```bash
+# Generate comprehensive documentation
+claude /docs
+
+# Explain complex code sections
+claude /explain --function calculateMetrics
+
+# Update README only
+claude /docs --readme-only
+```
+
+### Refactoring Workflow
+
+```bash
+# Analyze refactoring opportunities
+claude /refactor
+
+# Generate comprehensive tests
+claude /test-gen
+
+# Apply fixes and improvements
+claude /fix
+
+# Commit changes
+claude /gsave
+```
+
+## ⚙️ Configuration Details
+
+### Command Behavior
+
+- **Pre-commit Checks**: `/gsave` automatically runs linting, builds, and documentation updates
+- **Conventional Commits**: Enforces `type: description` format with appropriate emoji
+- **Clean Attribution**: Removes AI-generated content attributions by default
+- **Atomic Commits**: Encourages single-purpose, focused commits
+
+### Git Workflow Integration
+
+The `/gsave` command provides:
+
+- Automatic staging of modified files
+- Pre-commit quality checks
+- Conventional commit message formatting
+- Emoji categorization (🐛 fix, ✨ feat, 📝 docs, etc.)
+- Clean attribution (no AI signatures unless needed)
+
+### Security Features
+
+- Excludes sensitive files (`.credentials.json`, session data)
+- Includes security auditing via `/audit` command
+- Implements secure development practices
+
+## 🔧 Troubleshooting
+
+### Configuration Issues
+
+**Claude CLI doesn't recognize commands:**
+
+```bash
+# Check directory permissions
+chmod 755 ~/.claude
+chmod 644 ~/.claude/*.md ~/.claude/commands/*.md
+
+# Verify Claude CLI version
+claude --version
+
+# Check configuration files
+ls -la ~/.claude
+```
+
+**Commands not found:**
+
+```bash
+# Ensure commands directory exists
+ls ~/.claude/commands/
+
+# Verify command file format
+claude /test --help
+```
+
+### Authentication Issues
+
+**Login problems:**
+
+```bash
+# Clear existing authentication
+claude auth logout
+
+# Re-authenticate
+claude auth login
+
+# Verify authentication
+claude auth status
+```
+
+**Permission errors:**
+
+```bash
+# Fix directory permissions
+chmod -R 755 ~/.claude
+chown -R $USER ~/.claude
+```
+
+### Performance Issues
+
+**Slow command execution:**
+
+```bash
+# Clear session cache
+rm -rf ~/.claude/projects/*
+rm -rf ~/.claude/todos/*
+
+# Restart Claude CLI
+claude --version
+```
+
+## 🔄 Maintenance
+
+### Updating Configuration
 
 ```bash
 cd ~/.claude
-git add .
-git commit -m "Update Claude configuration"
+
+# Pull latest changes
+git pull origin main
+
+# Backup current settings
+cp .credentials.json .credentials.json.backup
+
+# Apply updates (preserve credentials)
+git reset --hard HEAD
+cp .credentials.json.backup .credentials.json
+```
+
+### Syncing Changes
+
+```bash
+cd ~/.claude
+
+# Stage configuration changes
+git add commands/ *.md
+
+# Commit with clean format
+claude /gsave
+
+# Push updates
 git push origin main
 ```
 
-## 🛠️ 문제 해결
-
-### Claude CLI가 설정을 인식하지 못하는 경우
-
-1. 디렉토리 권한 확인: `chmod 755 ~/.claude`
-2. Claude CLI 재시작: `claude --version`
-3. 설정 파일 확인: `ls -la ~/.claude`
-
-### 인증 문제
+### Backup Strategy
 
 ```bash
-claude auth logout
-claude auth login
+# Create complete backup
+tar -czf claude-config-backup-$(date +%Y%m%d).tar.gz ~/.claude
+
+# Exclude sensitive data for sharing
+tar --exclude='.credentials.json' --exclude='projects/' --exclude='todos/' \
+    -czf claude-config-share-$(date +%Y%m%d).tar.gz ~/.claude
 ```
 
-## 📞 지원
+## 📋 Best Practices
 
-문제가 발생하면 [Claude 공식 문서](https://docs.anthropic.com/en/docs/claude-code)를 참조하거나 이슈를 등록해주세요.
+### Development Workflow
+
+1. **Quality First**: Always run `/fix` and `/test` before committing
+2. **Clean Commits**: Use `/gsave` for consistent, well-formatted commits
+3. **Documentation**: Keep documentation updated with `/docs`
+4. **Security**: Regular audits with `/audit`
+
+### Command Usage
+
+1. **Incremental Development**: Use commands iteratively for best results
+2. **Focused Tasks**: Each command should address specific concerns
+3. **Quality Gates**: Don't skip pre-commit checks
+4. **Clean Attribution**: Maintain professional commit history
+
+### Configuration Management
+
+1. **Version Control**: Track configuration changes in git
+2. **Environment Separation**: Use different configurations for different contexts
+3. **Security**: Never commit sensitive authentication data
+4. **Backup**: Regular backups of working configurations
+
+## 🆘 Support
+
+### Documentation
+
+- [Claude CLI Official Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Command Reference](./commands/)
+- [Architecture Guide](./CLAUDE.md)
+
+### Community
+
+- Create issues for bugs or feature requests
+- Contribute improvements via pull requests
+- Share configuration enhancements
+
+### Professional Support
+
+For enterprise or professional support needs, consult the [Claude CLI documentation](https://docs.anthropic.com/en/docs/claude-code) for official support channels.
+
+---
+
+**Last Updated**: 2025-07-13  
+**Configuration Version**: 2.0  
+**Compatible Claude CLI**: 1.0+
