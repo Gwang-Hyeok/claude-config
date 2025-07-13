@@ -17,12 +17,14 @@ claude-config/
 ## 🚀 새 환경에서 설정하기
 
 ### 1. 저장소 클론
+
 ```bash
 git clone https://github.com/Gwang-Hyeok/claude-config.git
 cd claude-config
 ```
 
 ### 2. Claude 설정 디렉토리로 복사
+
 ```bash
 # 기존 설정이 있다면 백업
 mv ~/.claude ~/.claude.backup
@@ -35,7 +37,9 @@ cd ~/.claude
 ```
 
 ### 3. 인증 설정
+
 Claude CLI에 로그인하여 새로운 인증 정보를 생성합니다:
+
 ```bash
 claude auth login
 ```
@@ -50,6 +54,7 @@ claude auth login
 ## ⚠️ 보안 주의사항
 
 이 저장소는 다음 파일들을 **포함하지 않습니다**:
+
 - `.credentials.json` - 인증 토큰 (새 환경에서 재생성 필요)
 - `projects/` - 프로젝트별 세션 데이터
 - `todos/` - 개인 작업 목록
@@ -68,11 +73,13 @@ git push origin main
 ## 🛠️ 문제 해결
 
 ### Claude CLI가 설정을 인식하지 못하는 경우
+
 1. 디렉토리 권한 확인: `chmod 755 ~/.claude`
 2. Claude CLI 재시작: `claude --version`
 3. 설정 파일 확인: `ls -la ~/.claude`
 
 ### 인증 문제
+
 ```bash
 claude auth logout
 claude auth login

@@ -26,6 +26,35 @@ Todo lists are persisted per session in the `todos/` directory, allowing Claude 
 - The directory structure supports multiple concurrent project sessions
 - Session files are in JSONL format for incremental logging
 
+## Custom Commands
+
+This configuration includes custom slash commands in the `commands/` directory:
+
+- `/test` - Run all unit tests and report results
+- `/fix` - Automated bug detection and fixing with strict type checking (mypy, ruff)
+- `/gsave` - Create well-formatted Git commits with conventional commit messages and emoji
+- `/refactor` - Code refactoring assistance
+- `/explain` - Code explanation and documentation
+- `/audit` - Code auditing and security analysis
+- `/docs` - Documentation generation
+- `/test_gen` - Test generation utilities
+- `/review_gh` - GitHub review workflows
+
+## Git Workflow
+
+The `/gsave` command enforces conventional commit format with emoji:
+- Always runs pre-commit checks (linting, building, documentation generation)
+- Uses conventional commit types (feat, fix, docs, style, refactor, perf, test, chore)
+- Includes appropriate emoji for each commit type
+- Automatically stages all modified files before committing
+
+## Development Commands
+
+Quality assurance commands available:
+- `/fix` - Comprehensive error fixing with mypy type checking and ruff linting
+- `/test` - Execute test suites
+- `/audit` - Security and code quality auditing
+
 ## Notable Projects
 
 Based on the project directories, this workspace appears to focus on:
