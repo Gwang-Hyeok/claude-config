@@ -33,6 +33,7 @@ Or with options:
 - **Verify before committing**: Ensure code is linted, builds correctly, and documentation is updated. Make sure to run ALL of the pre-commit checks first.
 - **Atomic commits**: Each commit should contain related changes that serve a single purpose
 - **Split large changes**: If changes touch multiple concerns, split them into separate commits
+- **Clean attribution**: Remove AI-generated content attributions unless specifically needed
 - **Conventional commit format**: Use the format `<type>: <description>` where type is one of:
   - `feat`: A new feature
   - `fix`: A bug fix
@@ -68,3 +69,10 @@ Or with options:
   - 🌱 `chore`: Add or update seed files
   - 🧑‍💻 `chore`: Improve developer experience
   - 🧵 `feat`: Add or update code related to multithreading or concurrency
+
+## Attribution Removal
+
+- `🤖 Generated with [Claude Code](https://claude.ai/code)`
+- `Co-Authored-By: Claude <noreply@anthropic.com>`
+- Any other AI-generated content attributions
+- Claude-related signatures or references
